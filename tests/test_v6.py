@@ -1,10 +1,11 @@
+import os
 import sys, os
 from playwright.sync_api import sync_playwright
 url = 'file://' + os.path.abspath(sys.argv[1])
 shots = sys.argv[2]
 errs = []
 with sync_playwright() as p:
-    b = p.chromium.launch(executable_path='/usr/bin/google-chrome', args=['--no-sandbox'])
+    b = p.chromium.launch(executable_path=os.environ.get('CHROME','/usr/bin/google-chrome'), args=['--no-sandbox'])
     pg = b.new_page(viewport={'width': 1360, 'height': 900})
     pg.on('pageerror', lambda e: errs.append(str(e)))
     pg.on('console', lambda m: errs.append('console:' + m.text) if m.type == 'error' else None)

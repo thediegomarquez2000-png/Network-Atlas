@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="Network Atlas: a mastery-gated CCNA v2.0 to CCNP to CCIE learning roadmap, with an interconnected knowledge graph." />
+  <title>Network Atlas · CCNA Practice</title>
+  <style>
+<!--@include styles/base.css-->
+</style>
+  <style>
+<!--@include styles/components.css-->
+</style>
+  <style>
+<!--@include styles/labs.css-->
+</style>
+  <style>
+<!--@include styles/app.css-->
+</style>
+</head>
+<body>
+<div id="app" class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-symbol"><span></span><span></span><span></span><span></span><span></span></div><div><b>NETWORK <em>ATLAS</em></b><small>THE MASTERY PROTOCOL</small></div></div>
+    <div class="sidebar-intro"><span class="pulse-dot"></span><span>YOUR LEARNING SYSTEM</span></div>
+    <div class="side-nav">
+      <button class="nav-btn" data-view="simulator"><span class="nav-icon">⌘</span><span>Virtual network lab</span></button>
+      <button class="nav-btn active" data-view="home"><span class="nav-icon">◫</span><span>Overview</span></button>
+      <button class="nav-btn" data-view="graph"><span class="nav-icon">◉</span><span>Knowledge graph</span></button>
+      <button class="nav-btn" data-view="roadmap"><span class="nav-icon">☷</span><span>Full curriculum</span></button>
+      <button class="nav-btn" data-view="dictionary"><span class="nav-icon">▤</span><span>Network dictionary</span></button>
+      <button class="nav-btn" data-view="flashcards"><span class="nav-icon">◈</span><span>Vocab flashcards</span></button>
+      <button class="nav-btn" data-view="match"><span class="nav-icon">⇄</span><span>Definition match</span></button>
+      <button class="nav-btn" data-view="final"><span class="nav-icon">🎓</span><span>Final CCNA exam</span></button>
+      <button class="nav-btn" data-view="comeback"><span class="nav-icon">↺</span><span>Come-back checks</span><b class="nav-badge" id="due-badge" hidden></b></button>
+      <button class="nav-btn" data-view="recap"><span class="nav-icon">↻</span><span>Recap quizzes</span></button>
+      <button class="nav-btn" data-view="subjects"><span class="nav-icon">✺</span><span>Subject exams</span></button>
+      <button class="nav-btn" data-view="resources"><span class="nav-icon">⚒</span><span>Software & labs</span></button>
+      <button class="nav-btn" data-view="settings"><span class="nav-icon">⚙</span><span>Settings & learners</span></button>
+    </div>
+    <div class="sidebar-title"><span>CERTIFICATION TRACKS</span><span>03</span></div>
+    <div class="track-nav" id="track-nav"></div>
+    <div class="side-bottom">
+      <div class="sidebar-callout"><span>✦</span><div><b>One step at a time.</b><p>Each lesson opens the next. Mistakes are how brains learn.</p></div></div>
+      <button class="secondary-btn full" id="export-btn">⇩ Export progress</button>
+      <button class="text-btn" id="import-btn">Import a backup</button>
+      <input type="file" id="import-file" accept="application/json,.json" hidden />
+    </div>
+  </aside>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="mobile-brand">NETWORK <b>ATLAS</b></div>
+      <button class="mobile-menu" id="mobile-menu" aria-label="Toggle menu">☰</button>
+      <div class="crumb" id="crumb"><span>ACADEMY</span><i>/</i><b>Overview</b></div>
+      <div class="top-actions"><button class="say-page" id="say-page" aria-label="Read this page out loud">🔊 <span>Read page</span></button><button class="search-trigger" id="search-trigger"><span>⌕</span> <span>Search 158 concepts</span> <kbd>/</kbd></button><div class="header-separator"></div><div class="user-avatar">NA</div></div>
+    </header>
+    <main id="main" class="main" tabindex="-1"></main>
+    <footer class="footer"><span>NETWORK ATLAS <strong>v0.7</strong> · Browser-local progress · Not affiliated with Cisco</span><span>Built for deep learning, one concept at a time.</span></footer>
+  </div>
+</div>
+<div id="toast" class="toast" aria-live="polite"></div>
+<div id="definition-modal" class="modal-backdrop hidden" role="presentation">
+  <div class="definition-panel" role="dialog" aria-modal="true" aria-label="Network term explanation">
+    <button class="definition-close" aria-label="Close definition">✕</button>
+    <div class="definition-category content-label"></div><h2 class="definition-term"></h2>
+    <div class="definition-section-title">PLAIN-ENGLISH MEANING</div><p class="definition-meaning"></p>
+    <div class="definition-section-title">A REAL-LIFE EXAMPLE</div><p class="definition-example"></p><div class="definition-deep-wrap" hidden><div class="definition-section-title">WHY IT MATTERS</div><p class="definition-deep"></p><div class="definition-section-title">COMMON MISUNDERSTANDING</div><p class="definition-pitfall"></p></div>
+    <div class="definition-actions"><button class="secondary-btn" data-say-def="">🔊 Read</button><button class="secondary-btn" data-definition-dictionary="">Find in dictionary ↗</button><button class="primary-btn small" data-definition-study="">Study this flashcard ↗</button></div>
+  </div>
+</div>
+<div class="modal-backdrop hidden" id="search-modal"><div class="search-modal" role="dialog" aria-modal="true" aria-label="Search curriculum"><div class="modal-search"><span>⌕</span><input id="search-input" placeholder="Search topics, protocols, exams…" autocomplete="off"/><button id="close-search">Esc</button></div><div class="search-results" id="search-results"></div></div></div>
+<script>
+<!--@include modules/prefs.js-->
+</script>
+<script>
+<!--@include data/topics.js-->
+</script>
+<script>
+<!--@include data/lessons.js-->
+</script>
+<script>
+<!--@include data/glossary.js-->
+</script>
+<script>
+<!--@include data/exams.js-->
+</script>
+<script>
+<!--@include modules/legacy-lab.js-->
+</script>
+<script>
+<!--@include modules/simulator.js-->
+</script>
+<script>
+<!--@include vendor/jspdf-2.5.1.js-->
+</script>
+<script>
+<!--@include data/final-bank.js-->
+</script>
+<script>
+<!--@include modules/final-exam.js-->
+</script>
+<script>
+<!--@include modules/app.js-->
+</script>
+</body>
+</html>

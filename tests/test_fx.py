@@ -1,10 +1,11 @@
+import os
 import sys, os
 from playwright.sync_api import sync_playwright
 url='file://'+os.path.abspath(sys.argv[1]);shots=sys.argv[2];errs=[]
 FILL='''(pct)=>{const T=window.ATLAS_FINAL_TEST,s=T.store();const its=T.buildForm(s.cur.form,s.cur.seed);let k=0;for(const it of its){const good=((k++*37)%100)<pct*100;let a;
  if(it.t==='mc')a=good?0:1;else if(it.t==='multi')a=good?[...Array(it.k).keys()]:[it.o.length-1,...Array(it.k-1).keys()].slice(0,it.k);else if(it.t==='input')a=good?it.i[0]:'wrong';else if(it.t==='order')a=good?[...it.ord.keys()]:[...it.ord.keys()].reverse();else a=good?it.pr.map(p=>p[1]):it.pr.map(()=>it.pr[0][1]);s.cur.answers[it.n]=a;}s.cur.i=its.length-1;}'''
 with sync_playwright() as p:
-    b=p.chromium.launch(executable_path='/usr/bin/google-chrome',args=['--no-sandbox'])
+    b=p.chromium.launch(executable_path=os.environ.get('CHROME','/usr/bin/google-chrome'),args=['--no-sandbox'])
     ctx=b.new_context(viewport={'width':1360,'height':900},accept_downloads=True);pg=ctx.new_page()
     pg.on('pageerror',lambda e:errs.append(str(e)))
     pg.goto(url);pg.wait_for_timeout(300)
