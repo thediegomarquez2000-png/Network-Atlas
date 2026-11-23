@@ -68,7 +68,7 @@ with sync_playwright() as p:
     print('keys after switch:', sorted(sam))
     print('avatar:', pg.locator('.user-avatar').first.inner_text())
     # lab mission from lesson + grown-up mode with PIN
-    pg.click('[data-action="continue"]'); pg.wait_for_timeout(150)
+    pg.click('[data-view="home"]'); pg.click('[data-action="continue"]'); pg.wait_for_timeout(150)
     pg.click('[data-show-mode="adult"]'); pg.screenshot(path=f'{shots}/08-adult-mode.png', full_page=True)
     pg.click('[data-mission]'); pg.wait_for_timeout(200); pg.screenshot(path=f'{shots}/09-mission.png')
     print('badge:', badge, '| errors:', errs)

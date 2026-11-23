@@ -18,6 +18,9 @@
   <style>
 <!--@include styles/app.css-->
 </style>
+<style>
+<!--@include styles/plan.css-->
+</style>
 </head>
 <body>
 <div id="app" class="app-shell">
@@ -25,8 +28,9 @@
     <div class="brand"><div class="brand-symbol"><span></span><span></span><span></span><span></span><span></span></div><div><b>NETWORK <em>ATLAS</em></b><small>THE MASTERY PROTOCOL</small></div></div>
     <div class="sidebar-intro"><span class="pulse-dot"></span><span>YOUR LEARNING SYSTEM</span></div>
     <div class="side-nav">
+      <button class="nav-btn" data-view="plan"><span class="nav-icon">☀</span><span>Today</span></button>
       <button class="nav-btn" data-view="simulator"><span class="nav-icon">⌘</span><span>Virtual network lab</span></button>
-      <button class="nav-btn active" data-view="home"><span class="nav-icon">◫</span><span>Overview</span></button>
+      <button class="nav-btn" data-view="home"><span class="nav-icon">◫</span><span>Overview</span></button>
       <button class="nav-btn" data-view="graph"><span class="nav-icon">◉</span><span>Knowledge graph</span></button>
       <button class="nav-btn" data-view="roadmap"><span class="nav-icon">☷</span><span>Full curriculum</span></button>
       <button class="nav-btn" data-view="dictionary"><span class="nav-icon">▤</span><span>Network dictionary</span></button>
@@ -86,6 +90,14 @@
 <!--@include data/exams.js-->
 </script>
 <script>
+<!--@include data/ccna/_helpers.js-->
+<!--@include data/ccna/d1-infrastructure.js-->
+<!--@include data/ccna/d2-switching.js-->
+<!--@include data/ccna/d3-routing.js-->
+<!--@include data/ccna/d4-security.js-->
+<!--@include data/ccna/d5-operations.js-->
+</script>
+<script>
 <!--@include modules/legacy-lab.js-->
 </script>
 <script>
@@ -99,6 +111,9 @@
 </script>
 <script>
 <!--@include modules/final-exam.js-->
+</script>
+<script>
+<!--@include modules/plan.js-->
 </script>
 <script>
 <!--@include modules/app.js-->

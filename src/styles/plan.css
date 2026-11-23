@@ -1,0 +1,33 @@
+/* Today / study plan */
+.plan-tasks{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:12px}
+.plan-task{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;border:1px solid #28374c;border-radius:16px;background:#111c2d;padding:18px 20px}
+.plan-task b{font-size:17px}
+.plan-task p{margin:6px 0 4px;color:#b5c6dc;font-size:15px;line-height:1.6}
+.plan-task small{color:#8ea3bb}
+.plan-task.done{opacity:.65}
+.plan-task.done b{text-decoration:line-through}
+.plan-tick{width:44px;height:44px;border-radius:50%;border:2px solid var(--teal);background:transparent;color:var(--teal);font-size:18px;font-weight:800;cursor:pointer}
+.plan-task.done .plan-tick{background:var(--teal);color:#042623}
+.plan-status{display:inline-block;margin-left:6px;padding:2px 10px;border-radius:999px;font-weight:700;font-size:12px}
+.plan-status.ok{background:#174036;color:#c7f8e7}
+.plan-status.warn{background:#4a3b14;color:#ffe3a1}
+.plan-status.bad{background:#4d1f26;color:#ffc9d0}
+.plan-bar{position:relative;height:14px;border-radius:999px;background:#1a2639;margin:6px 0 18px;overflow:visible}
+.plan-bar span{display:block;height:100%;border-radius:999px;background:var(--teal)}
+.plan-bar i{position:absolute;top:-5px;width:3px;height:24px;background:#ffe3a1;border-radius:2px}
+.plan-weeks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.plan-week{position:relative;border:1px solid #28374c;border-radius:12px;padding:10px 12px;background:#0d1626;display:flex;flex-direction:column;gap:2px}
+.plan-week b{font-size:12px;color:#8ea3bb}
+.plan-week span{font-weight:700}
+.plan-week small{color:#8ea3bb}
+.plan-week.current{border-color:var(--teal);box-shadow:0 0 0 2px rgba(77,230,191,.25)}
+.plan-week.done{background:#13302b}
+.plan-week i{position:absolute;top:8px;right:10px;color:var(--teal);font-style:normal;font-weight:800}
+.plan-ready{list-style:none;padding:0;margin:12px 0;display:grid;gap:8px;font-size:15px}
+.plan-ready li.ok{color:#c7f8e7}
+.plan-setup{display:grid;gap:22px;max-width:640px}
+.plan-field{display:grid;gap:10px;border:0;padding:0;margin:0;font-size:16px}
+.plan-field input[type=date]{font:inherit;padding:10px 12px;border-radius:10px;border:1px solid #34465a;background:#0d1626;color:inherit;max-width:240px}
+.plan-choice{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid #28374c;border-radius:10px;cursor:pointer}
+.plan-choice input{width:20px;height:20px}
+@media (max-width:640px){.plan-task{grid-template-columns:auto 1fr}.plan-task .primary-btn{grid-column:1/-1}}
