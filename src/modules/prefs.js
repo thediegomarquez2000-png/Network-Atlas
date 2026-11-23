@@ -5,7 +5,7 @@
 const PK='network-atlas-profiles-v6';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let sysReduce=false;try{sysReduce=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
-const DEF={fontSize:0,theme:'dark',easyFont:false,reduceMotion:sysReduce,calm:false,literal:false,rate:0.95,breakMins:0,longMessages:true,minWords:12,sameDay:false,modes:{type:true,say:true,pick:true,adult:true}};
+const DEF={fontSize:0,theme:'auto',easyFont:false,reduceMotion:sysReduce,calm:false,literal:false,rate:0.95,breakMins:0,longMessages:true,minWords:12,sameDay:false,modes:{type:true,say:true,pick:true,adult:true}};
 let profiles=null;try{profiles=JSON.parse(localStorage.getItem(PK)||'null');}catch(e){}
 if(!profiles||!Array.isArray(profiles.list)||!profiles.list.length)profiles={active:'p1',list:[{id:'p1',name:'Learner 1'}],pin:''};
 profiles.list=profiles.list.filter(p=>p&&typeof p.id==='string'&&typeof p.name==='string').slice(0,20);
@@ -24,7 +24,7 @@ const initials=n=>String(n||'?').trim().split(/\s+/).map(w=>w[0]).join('').slice
 
 function apply(){const h=document.documentElement;
  [1,2,3].forEach(n=>h.classList.toggle('fs-'+n,prefs.fontSize===n));
- ['contrast','light'].forEach(t=>h.classList.toggle('t-'+t,prefs.theme===t));
+ const hr=new Date().getHours(),eff=prefs.theme==='auto'?(hr>=19||hr<7?'night':'dark'):prefs.theme;['contrast','light','night'].forEach(t=>h.classList.toggle('t-'+t,eff===t));const tc=document.querySelector('meta[name=theme-color]');if(tc)tc.content=eff==='night'?'#070605':'#0b1020';
  h.classList.toggle('f-easy',!!prefs.easyFont);h.classList.toggle('rm',!!prefs.reduceMotion);
  h.classList.toggle('calm',!!prefs.calm);h.classList.toggle('literal',!!prefs.literal);
  const av=document.querySelector('.user-avatar');if(av){av.textContent=initials(me().name);av.title='Learner: '+me().name;}
@@ -56,7 +56,7 @@ function renderSettings(el){if(!el)return;const locked=Boolean(profiles.pin)&&!u
  <section class="panel set-section"><h2>👤 Learner</h2><div class="learner-list">${profiles.list.map(p=>`<div class="learner-row ${p.id===profiles.active?'on':''}"><span class="user-avatar">${esc(initials(p.name))}</span><b>${esc(p.name)}</b>${p.id===profiles.active?'<span class="pill">ACTIVE</span>':`<button class="secondary-btn" data-profile-switch="${p.id}">Switch</button>${locked?'':`<button class="text-btn inline" data-profile-remove="${p.id}">Remove</button>`}`}</div>`).join('')}</div>
  <div class="inline-form"><input id="new-learner" maxlength="24" placeholder="New learner's name" aria-label="New learner's name"><button class="secondary-btn" data-profile-add>Add learner</button></div>
  <div class="inline-form"><input id="rename-learner" maxlength="24" value="${esc(cur.name)}" aria-label="Rename this learner"><button class="secondary-btn" data-profile-rename>Rename</button></div></section>
- <section class="panel set-section"><h2>👀 Seeing</h2><h4>Text size</h4>${seg('fontSize',[[0,'Normal'],[1,'Large'],[2,'Larger'],[3,'Largest']])}<h4>Colors</h4>${seg('theme',[['dark','Dark'],['contrast','High contrast'],['light','Light']])}
+ <section class="panel set-section"><h2>👀 Seeing</h2><h4>Text size</h4>${seg('fontSize',[[0,'Normal'],[1,'Large'],[2,'Larger'],[3,'Largest']])}<h4>Colors</h4>${seg('theme',[['auto','Auto (Night after 7pm)'],['night','Night'],['dark','Dark'],['contrast','High contrast'],['light','Light']])}
  ${tog('easyFont','Easier-reading font','Simpler letter shapes and more space between words and lines.')}${tog('reduceMotion','Less motion','Turns off sliding and fading effects.')}${tog('calm','Calm screen','Hides scores, percentages and the busy graph.')}${tog('literal','Literal mode','Hides “Picture it like this” comparisons, for learners who prefer things said exactly.')}</section>
  <section class="panel set-section"><h2>🔊 Listening</h2><p class="small-print">${canSpeak?'Tap 🔊 next to any section to hear it. “Read page” at the top reads the whole screen. Tap again to stop.':'This browser cannot read aloud. Try Chrome, Edge or Safari.'}</p><h4>Reading speed</h4><div class="rate-row"><input type="range" id="pref-rate" min="0.6" max="1.4" step="0.05" value="${prefs.rate}" aria-label="Reading speed"><span id="rate-label">${rateLabel(prefs.rate)}</span><button class="secondary-btn" data-voice-test>Test voice</button></div></section>
  <section class="panel set-section"><h2>⏱ Breaks & messages</h2><h4>Remind me to take a break after</h4>${seg('breakMins',[[0,'Off'],[10,'10 min'],[15,'15 min'],[20,'20 min'],[30,'30 min']])}${tog('longMessages','Keep messages on screen longer','Pop-up messages stay for 9 seconds instead of 3.')}</section>
@@ -98,4 +98,6 @@ const api={saveFile,get:k=>prefs[k],profileSuffix:suffix,profileName:()=>me().na
  renderSettings,msgMs:()=>prefs.longMessages?9000:3500};
 window.ATLAS_PREFS=api;
 apply();
+// Auto theme: re-check the clock so Night turns on at 7pm without a reload.
+setInterval(()=>{if(prefs.theme==='auto')apply();},5*60*1000);
 })();

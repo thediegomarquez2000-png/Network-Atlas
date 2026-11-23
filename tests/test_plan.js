@@ -62,6 +62,19 @@ const errors=[];const check=(c,m)=>{console.log((c?'ok   ':'FAIL ')+m);if(!c)err
   check(/Practice exam · Form A/.test(await pg.textContent('.plan-task b')),'all subjects passed → practice exam Form A');
   await pg.setViewportSize({width:390,height:844});await pg.screenshot({path:shots+'/plan-05-mobile.png',fullPage:true});
   const overflow=await pg.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+1);check(!overflow,'no horizontal scroll at phone width');
+  // Night theme + phone tab bar.
+  await pg.evaluate(()=>localStorage.setItem('network-atlas-prefs-v6',JSON.stringify({theme:'night'})));await pg.reload();await pg.waitForTimeout(300);
+  check(await pg.evaluate(()=>document.documentElement.classList.contains('t-night')),'Night theme class applied');
+  const bg=await pg.evaluate(()=>getComputedStyle(document.body).backgroundColor);check(bg==='rgb(7, 6, 5)','Night background is near-black ('+bg+')');
+  check(await pg.isVisible('#tabbar'),'tab bar visible on a phone');
+  await pg.click('#tabbar [data-view="flashcards"]');await pg.waitForTimeout(150);
+  check(await pg.evaluate(()=>document.querySelector('#tabbar [data-view="flashcards"]').classList.contains('active')),'tab bar navigates and highlights');
+  await pg.click('#tabbar [data-tab="menu"]');await pg.waitForTimeout(250);
+  check(await pg.evaluate(()=>document.getElementById('sidebar').classList.contains('open')),'Menu tab opens the full menu');
+  await pg.evaluate(()=>localStorage.setItem('network-atlas-prefs-v6',JSON.stringify({})));await pg.reload();await pg.waitForTimeout(300);
+  const h=new Date().getHours(),want=h>=19||h<7;
+  check(await pg.evaluate(()=>document.documentElement.classList.contains('t-night'))===want,'new learners default to Auto (Night after 7pm) → '+(want?'night':'dark')+' now');
+  await pg.setViewportSize({width:1280,height:900});check(!(await pg.isVisible('#tabbar')),'tab bar hidden on desktop');
   await b.close();
   console.log('errors:',JSON.stringify(errors));process.exit(errors.length?1:0);
 })();

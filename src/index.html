@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0b1020" />
   <meta name="description" content="Network Atlas: a mastery-gated CCNA v2.0 to CCNP to CCIE learning roadmap, with an interconnected knowledge graph." />
   <title>Network Atlas · CCNA Practice</title>
@@ -20,6 +20,12 @@
 </style>
 <style>
 <!--@include styles/plan.css-->
+</style>
+<style>
+<!--@include styles/mobile.css-->
+</style>
+<style>
+<!--@include styles/night.css-->
 </style>
 </head>
 <body>
@@ -61,9 +67,10 @@
       <div class="top-actions"><button class="say-page" id="say-page" aria-label="Read this page out loud">🔊 <span>Read page</span></button><button class="search-trigger" id="search-trigger"><span>⌕</span> <span>Search 158 concepts</span> <kbd>/</kbd></button><div class="header-separator"></div><div class="user-avatar">NA</div></div>
     </header>
     <main id="main" class="main" tabindex="-1"></main>
-    <footer class="footer"><span>NETWORK ATLAS <strong>v0.7</strong> · Browser-local progress · Not affiliated with Cisco</span><span>Built for deep learning, one concept at a time.</span></footer>
+    <footer class="footer"><span>NETWORK ATLAS <strong>v0.8</strong> · Browser-local progress · Not affiliated with Cisco</span><span>Built for deep learning, one concept at a time.</span></footer>
   </div>
 </div>
+<nav class="tabbar" id="tabbar" aria-label="Main sections"><button data-view="plan"><i aria-hidden="true">☀</i>Today</button><button data-tab="continue"><i aria-hidden="true">▶</i>Learn</button><button data-view="simulator"><i aria-hidden="true">⌘</i>Lab</button><button data-view="flashcards"><i aria-hidden="true">◈</i>Cards</button><button data-tab="menu" aria-controls="sidebar"><i aria-hidden="true">☰</i>Menu</button></nav>
 <div id="toast" class="toast" aria-live="polite"></div>
 <div id="definition-modal" class="modal-backdrop hidden" role="presentation">
   <div class="definition-panel" role="dialog" aria-modal="true" aria-label="Network term explanation">

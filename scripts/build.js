@@ -1,6 +1,7 @@
 // Build: inline every src file back into ONE offline dist/index.html.
 const fs=require('fs'),path=require('path');
 const root=path.join(__dirname,'..'),src=path.join(root,'src');
+require('./make-night.js'); // regenerate src/styles/night.css from the other stylesheets
 const html=fs.readFileSync(path.join(src,'index.html'),'utf8').replace(/<!--@include (\S+)-->/g,(_,rel)=>{
   const body=fs.readFileSync(path.join(src,rel),'utf8');
   if(/<\/script>/i.test(body)&&rel.endsWith('.js'))throw new Error(rel+' contains a closing script tag');
