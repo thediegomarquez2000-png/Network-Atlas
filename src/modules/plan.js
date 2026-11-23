@@ -77,6 +77,8 @@ function tasks(A,c,plan,r){
     var miss=r.forms.find(function(f){return f.score==null||f.score<TARGET;});
     list.push({id:'main',icon:'🎓',title:miss?'Practice exam · Form '+miss.form:'Practice exam (any form) + review',why:miss?'Take a full practice exam. Use extra time if you need it. Then read every explanation you missed.':'You reached the practice target on all three forms. Keep one form fresh each week until your real exam.',action:'final',mins:120});
   }
+  var pt=window.ATLAS_PTBOOK&&window.ATLAS_PTBOOK.nextDue();
+  if(pt)list.push({id:'pt',icon:'▦',title:'Packet Tracer: '+pt.title,why:'Build what you learned in real Packet Tracer. Follow the steps and type every command yourself.',action:'ptbook',mins:45});
   list.push({id:'flash',icon:'◈',title:'Flashcards · 10 minutes',why:'Small and often beats long and rare. Say each answer out loud before you flip.',action:'flashcards',mins:10});
   return list.slice(0,3);
 }

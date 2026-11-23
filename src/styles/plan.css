@@ -31,3 +31,32 @@
 .plan-choice{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid #28374c;border-radius:10px;cursor:pointer}
 .plan-choice input{width:20px;height:20px}
 @media (max-width:640px){.plan-task{grid-template-columns:auto 1fr}.plan-task .primary-btn{grid-column:1/-1}}
+/* Packet Tracer lab book */
+.pt-guide summary{cursor:pointer;font-size:15px;padding:4px 0}
+.pt-guide ol{margin:14px 0 0;padding-left:20px;display:grid;gap:10px;font-size:15px;line-height:1.6;color:#d3deec}
+.pt-list{list-style:none;margin:18px 0;padding:0;display:grid;gap:10px}
+.pt-lab{border:1px solid #28374c;border-radius:16px;background:#111c2d;overflow:hidden}
+.pt-lab.locked{opacity:.6}
+.pt-head{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:none;border:0;color:inherit;text-align:left;padding:16px 18px;cursor:pointer;font:inherit}
+.pt-head:disabled{cursor:default}
+.pt-num{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--teal);color:var(--teal);font-weight:800}
+.pt-num.done{background:var(--teal);color:#042623}
+.pt-title b{display:block;font-size:16px}
+.pt-title small{color:#8ea3bb;font-size:13px}
+.pt-state{font-size:20px;color:#8ea3bb}
+.pt-body{padding:0 20px 22px;font-size:15px;line-height:1.6}
+.pt-body h3{margin:20px 0 8px;font-size:16px}
+.pt-body ul{padding-left:20px;margin:0;display:grid;gap:6px}
+.pt-steps{padding-left:0;list-style:none;display:grid;gap:12px;margin:0}
+.pt-steps label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.pt-steps input{width:22px;height:22px;flex:none;margin-top:2px}
+.pt-steps li.ok span{color:#8ea3bb;text-decoration:line-through}
+.pt-code{margin:8px 0 0 32px;background:#050b13;border:1px solid #3b516b;border-radius:9px;padding:10px 12px;color:#d8f9ee;font:13px/1.7 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.pt-verify{width:100%;border-collapse:collapse;font-size:14px}
+.pt-verify th,.pt-verify td{text-align:left;border-bottom:1px solid #28374c;padding:8px 6px;vertical-align:top}
+.pt-verify code{color:#d8f9ee;font-family:ui-monospace,Menlo,Consolas,monospace;overflow-wrap:anywhere}
+.pt-lessons{color:#b5c6dc}
+.pt-body>.primary-btn,.pt-body>.secondary-btn{margin-top:18px}
+@media (max-width:640px){.pt-code{margin-left:0}.pt-verify,.pt-verify tbody,.pt-verify tr,.pt-verify td{display:block}.pt-verify thead{display:none}.pt-verify td:first-child{border:0;padding-bottom:0}}
+.pt-lessons{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.pt-lessons .text-btn{display:inline;width:auto;margin:0;padding:2px 0;text-align:left;color:var(--teal);text-decoration:underline;background:none;border:0;font-size:14px}

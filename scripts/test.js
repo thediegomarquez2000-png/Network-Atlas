@@ -2,7 +2,7 @@
 const {spawnSync}=require('child_process'),fs=require('fs'),path=require('path');
 const root=path.join(__dirname,'..'),dist=path.join(root,'dist','index.html'),shots=path.join(root,'shots');
 fs.mkdirSync(shots,{recursive:true});
-const runs=[['node',['tests/validate_bank.js',dist]],['node',['tests/validate_lessons.js',dist]],['node',['tests/test_plan.js',dist]],
+const runs=[['node',['tests/validate_bank.js',dist]],['node',['tests/validate_lessons.js',dist]],['node',['tests/test_plan.js',dist,shots]],['node',['tests/test_ios.js',dist,shots]],
   ...['test_v6','test_anim','test_fx'].map(t=>['python3',['tests/'+t+'.py',dist,shots+'/']])];
 let bad=0;
 for(const [cmd,args] of runs){
