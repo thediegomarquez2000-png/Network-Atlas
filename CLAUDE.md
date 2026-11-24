@@ -82,7 +82,8 @@ After unlocking, a **come-back check** is due the next day: 3 questions with no 
    - Remote scripts load only from approved CDNs (cdnjs and similar).
 
    Republishing from Claude Code may not be possible; if not, ask Diego to publish the built file from the Claude app.
-2. **Vercel (planned):** deploy `dist/index.html` as a static site on Diego's Vercel account (the same one Project Outlast uses). The fallback download path already works there.
+2. **Vercel (live):** https://network-atlas-app.vercel.app — project `network-atlas-app` (team `thediegomarquez2000-7209`), linked to GitHub `thediegomarquez2000-png/network-atlas`. Every push to `main` rebuilds with `node scripts/build.js` and publishes `dist/` (see `vercel.json`). Never put the no-sign-in test copy in `dist/`; it lives in `test-build/`. The older, unlinked Vercel project `network-atlas` (network-atlas-beryl.vercel.app) was left untouched.
+3. **Supabase:** project `etgdzytpaihspegtlayz`. Table `public.atlas_progress` with per-user row level security (`supabase/migrations/`). The anon key in `src/data/supabase-config.js` is public by design; never commit the service_role key. This cloud container cannot reach supabase.co, so tests use a fake server (`tests/test_sync.js`).
 
 ## Backlog, in suggested order
 
