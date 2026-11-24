@@ -9,4 +9,9 @@ const html=fs.readFileSync(path.join(src,'index.html'),'utf8').replace(/<!--@inc
 });
 fs.mkdirSync(path.join(root,'dist'),{recursive:true});
 fs.writeFileSync(path.join(root,'dist','index.html'),html);
+// Test copy: same app with Supabase switched off, so the browser tests never depend on a live server
+// (tests/test_sync.js presets a fake Supabase itself).
+const cfg=fs.readFileSync(path.join(src,'data','supabase-config.js'),'utf8');
+if(!html.includes(cfg))throw new Error('supabase config not found in build');
+fs.writeFileSync(path.join(root,'dist','test.html'),html.replace(cfg,"window.ATLAS_SUPABASE=window.ATLAS_SUPABASE||{url:'',anonKey:''};"));
 console.log('built dist/index.html',(html.length/1024).toFixed(0)+' KB');
