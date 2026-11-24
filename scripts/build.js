@@ -13,5 +13,7 @@ fs.writeFileSync(path.join(root,'dist','index.html'),html);
 // (tests/test_sync.js presets a fake Supabase itself).
 const cfg=fs.readFileSync(path.join(src,'data','supabase-config.js'),'utf8');
 if(!html.includes(cfg))throw new Error('supabase config not found in build');
-fs.writeFileSync(path.join(root,'dist','test.html'),html.replace(cfg,"window.ATLAS_SUPABASE=window.ATLAS_SUPABASE||{url:'',anonKey:''};"));
+fs.mkdirSync(path.join(root,'test-build'),{recursive:true});
+// Kept OUT of dist/: dist/ is what Vercel publishes, and this copy has no sign-in.
+fs.writeFileSync(path.join(root,'test-build','test.html'),html.replace(cfg,"window.ATLAS_SUPABASE=window.ATLAS_SUPABASE||{url:'',anonKey:''};"));
 console.log('built dist/index.html',(html.length/1024).toFixed(0)+' KB');

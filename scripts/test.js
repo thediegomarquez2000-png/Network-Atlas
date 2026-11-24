@@ -1,6 +1,6 @@
 // Runs every check against dist/index.html. Set CHROME to a Chromium binary for the browser tests.
 const {spawnSync}=require('child_process'),fs=require('fs'),path=require('path');
-const root=path.join(__dirname,'..'),dist=path.join(root,'dist','test.html'),shots=path.join(root,'shots');
+const root=path.join(__dirname,'..'),dist=path.join(root,'test-build','test.html'),shots=path.join(root,'shots');
 fs.mkdirSync(shots,{recursive:true});
 const runs=[['node',['tests/validate_bank.js',dist]],['node',['tests/validate_lessons.js',dist]],['node',['tests/test_plan.js',dist,shots]],['node',['tests/test_ios.js',dist,shots]],['node',['tests/test_sync.js',dist,shots]],
   ...['test_v6','test_anim','test_fx'].map(t=>['python3',['tests/'+t+'.py',dist,shots+'/']])];
