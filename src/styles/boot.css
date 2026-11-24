@@ -1,0 +1,25 @@
+/* Start-up screens: loading, sign-in, password lock; sync banner; account settings */
+html.boot-hold .app-shell,html.boot-hold .tabbar{visibility:hidden}
+.boot-screen{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:24px 16px;background:var(--bg,#080d19);overflow-y:auto}
+.boot-card{width:min(420px,100%);display:grid;gap:14px;text-align:left}
+.boot-logo{font-weight:800;letter-spacing:3px;font-size:13px;color:var(--teal,#4de6bf)}
+.boot-title{font-size:28px;margin:0;letter-spacing:-.5px;color:var(--text,#eff5ff)}
+.boot-msg{margin:0;font-size:16px;line-height:1.6;color:#b5c6dc}
+.boot-alert:empty{display:none}
+.boot-form{display:grid;gap:12px}
+.boot-field{display:grid;gap:6px;font-size:15px;font-weight:700;color:var(--text,#eff5ff)}
+.boot-input{font:inherit;font-size:17px;font-weight:400;padding:13px 14px;border-radius:12px;border:1px solid #34465a;background:#0d1626;color:inherit;width:100%;box-sizing:border-box}
+.boot-input:focus{outline:2px solid var(--teal,#4de6bf);outline-offset:1px}
+.boot-btn{font:inherit;font-size:17px;font-weight:800;min-height:50px;border-radius:12px;border:0;background:var(--teal,#4de6bf);color:#042623;cursor:pointer;padding:0 18px}
+.boot-btn:disabled{opacity:.6;cursor:wait}
+.boot-link{font:inherit;font-size:15px;background:none;border:0;color:var(--teal,#4de6bf);text-decoration:underline;cursor:pointer;justify-self:start;padding:8px 0}
+.boot-forgot{display:grid;gap:12px;border-top:1px solid #28374c;padding-top:14px}
+.sync-banner{position:fixed;left:16px;right:16px;top:16px;z-index:900;display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#1a2639;border:1px solid #4b987f;border-radius:14px;padding:14px 16px;font-size:15px;box-shadow:0 10px 30px #0008}
+.sync-banner span{flex:1 1 200px}
+.sync-banner .boot-btn{min-height:44px;font-size:15px}
+.acct-status{font-size:15px;color:#c7f8e7}
+.acct-form{display:grid;gap:10px;max-width:420px;margin-top:8px}
+.acct-form label{display:grid;gap:5px;font-weight:700;font-size:14px}
+.acct-form input{font:inherit;font-size:16px;padding:11px 12px;border-radius:10px;border:1px solid #34465a;background:#0d1626;color:inherit}
+.acct-msg{margin:0;font-size:14px;color:#ffe3a1}
+.acct-msg:empty{display:none}

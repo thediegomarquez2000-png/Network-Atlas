@@ -1,5 +1,5 @@
 const fs=require('fs');const h=fs.readFileSync(process.argv[2],'utf8');
-const scripts=[...h.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m=>m[1]);
+const scripts=[...h.matchAll(/<script(?: type="text\/atlas")?>([\s\S]*?)<\/script>/g)].map(m=>m[1]);
 const bankSrc=scripts.find(s=>s.includes('window.FX_BANK=[]'));const engSrc=scripts.find(s=>s.includes('ATLAS_FINAL_TEST'));
 global.window={};global.document={getElementById:()=>({addEventListener(){},querySelector(){return null}}),documentElement:{classList:{contains:()=>false}}};global.localStorage={getItem:()=>null,setItem(){}};
 eval(bankSrc);eval(engSrc);const T=window.ATLAS_FINAL_TEST;let errs=0;const err=m=>{errs++;console.log('ERR',m)};

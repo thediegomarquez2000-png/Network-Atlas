@@ -3,7 +3,7 @@
 // Hand-tuned semantic colors (right/wrong, focus) live at the end of the generated file.
 const fs=require('fs'),path=require('path');
 const dir=path.join(__dirname,'..','src','styles');
-const SOURCES=['base.css','components.css','labs.css','app.css','plan.css','mobile.css'];
+const SOURCES=['base.css','components.css','labs.css','app.css','plan.css','mobile.css','boot.css'];
 const COLOR_PROPS=/^(color|background|background-color|background-image|border(-[a-z]+)*|outline(-color)?|box-shadow|text-shadow|fill|stroke|caret-color|accent-color|text-decoration(-color)?|scrollbar-color|--[\w-]+)$/;
 const COLOR_RE=/#([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{3,4})\b|rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)(?:[\s,/]+([\d.]+%?))?\s*\)|\b(white|black)\b/gi;
 

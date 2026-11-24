@@ -25,6 +25,9 @@
 <!--@include styles/mobile.css-->
 </style>
 <style>
+<!--@include styles/boot.css-->
+</style>
+<style>
 <!--@include styles/night.css-->
 </style>
 </head>
@@ -82,22 +85,22 @@
   </div>
 </div>
 <div class="modal-backdrop hidden" id="search-modal"><div class="search-modal" role="dialog" aria-modal="true" aria-label="Search curriculum"><div class="modal-search"><span>⌕</span><input id="search-input" placeholder="Search topics, protocols, exams…" autocomplete="off"/><button id="close-search">Esc</button></div><div class="search-results" id="search-results"></div></div></div>
-<script>
+<script type="text/atlas">
 <!--@include modules/prefs.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include data/topics.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include data/lessons.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include data/glossary.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include data/exams.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include data/ccna/_helpers.js-->
 <!--@include data/ccna/d1-infrastructure.js-->
 <!--@include data/ccna/d2-switching.js-->
@@ -105,28 +108,32 @@
 <!--@include data/ccna/d4-security.js-->
 <!--@include data/ccna/d5-operations.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include modules/legacy-lab.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include modules/simulator.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include vendor/jspdf-2.5.1.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include data/final-bank.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include modules/final-exam.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include data/pt-labs.js-->
 <!--@include modules/ptbook.js-->
 <!--@include modules/plan.js-->
 </script>
-<script>
+<script type="text/atlas">
 <!--@include modules/app.js-->
+</script>
+<script>
+<!--@include data/supabase-config.js-->
+<!--@include modules/boot.js-->
 </script>
 </body>
 </html>

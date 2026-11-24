@@ -2,7 +2,7 @@
 // every CCNA topic authored, and the gate chain is passable (each domain with lessons has a subject exam).
 const fs=require('fs'),vm=require('vm');
 const html=fs.readFileSync(process.argv[2],'utf8');
-const scripts=[...html.matchAll(/<script>\n([\s\S]*?)\n<\/script>/g)].map(m=>m[1]);
+const scripts=[...html.matchAll(/<script(?: type="text\/atlas")?>\n([\s\S]*?)\n<\/script>/g)].map(m=>m[1]);
 const ctx={console};ctx.window=ctx;vm.createContext(ctx);
 for(const s of scripts.filter(s=>/ATLAS_TOPICS=|ATLAS_LESSONS=|ATLAS_EXAMS=|ATLAS_CCNA/.test(s)&&!/ATLAS_PREFS=|FX_BANK/.test(s))){vm.runInContext(s,ctx);}
 const W=ctx.window,T=W.ATLAS_TOPICS,LS=W.ATLAS_LESSONS,EX=W.ATLAS_EXAMS;const errs=[];
